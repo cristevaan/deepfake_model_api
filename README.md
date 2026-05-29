@@ -46,6 +46,7 @@ python3 -m venv venv        # Windows: py -m venv venv
 source venv/bin/activate    # Windows: venv\Scripts\activate
 
 # 2. Install dependencies
+# Masuk atau arahkan ke dalam direktori proyek
 pip install -r requirements.txt
 
 # 3. Setup environment variabel
@@ -79,15 +80,14 @@ http://127.0.0.1:8000/docs # atau http://localhost:8000/docs
 
 ```json
 {
-  "filename": "mantesting.jpg",
+  "filename": "gambar2.jpg",
   "prediction": "Real",
-  "confidence": 75,
+  "confidence": 93.81,
   "probabilities": {
-    "Fake": 25,
-    "Real": 75
+    "Fake": 6.19,
+    "Real": 93.81
   },
-  "raw_score": 0.7499796152114868,
-  "risk_level": "MEDIUM",
-  "explanation": "Model memperkirakan foto tersebut nyata dengan tingkat kepercayaan 75% dan risiko medium. Hasil ini tidak menjamin kepastian mutlak karena masih ada kemungkinan manipulasi. Disarankan untuk memeriksa metadata, sumber asli, atau membandingkannya dengan gambar lain untuk verifikasi lebih lanjut."
+  "raw_score": 0.9380651712417603,
+  "explanation": "Model memprediksi gambar ini asli dengan tingkat kepercayaan 93.81%. Hasil ini menunjukkan kemungkinan besar foto tersebut tidak dimanipulasi. Namun, untuk memastikan, Anda dapat memeriksa sumber asli foto atau menggunakan alat forensik lain."
 }
 ```
