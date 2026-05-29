@@ -5,3 +5,4 @@ pillow
 python-multipart
 groq
 python-dotenv
+opencv-python

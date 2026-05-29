@@ -8,6 +8,12 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from tensorflow.keras.models import load_model
 from groq import Groq
 
+from gradcam import (
+    make_gradcam_heatmap,
+    overlay_heatmap,
+    image_to_base64
+)
+
 
 # Config
 app = FastAPI()
@@ -149,6 +155,24 @@ async def predict_image(
         pred_index = (1 if score > threshold else 0)
         pred_label = labels[pred_index]
         confidence = round(probabilities[pred_label], 2)
+        
+        # Generate Grad-CAM
+        heatmap = make_gradcam_heatmap(
+            img_array=img_array,
+            model=model,
+            last_conv_layer_name="activation_8"
+        )
+
+        # Overlay heatmap ke gambar asli
+        gradcam_image = overlay_heatmap(
+            image_bytes=image_bytes,
+            heatmap=heatmap
+        )
+
+        # Convert ke base64
+        gradcam_base64 = image_to_base64(
+            gradcam_image
+        )
 
         # Data for GenAI
         result_data = {
@@ -168,7 +192,8 @@ async def predict_image(
             "confidence": confidence,
             "probabilities": probabilities,
             "raw_score": score,
-            "explanation": explanation
+            "explanation": explanation,
+            "gradcam": gradcam_base64
         }
 
     except HTTPException:
