@@ -11,7 +11,7 @@ def make_gradcam_heatmap(
     img_array,
     model,
     last_conv_layer_name,
-    pred_index=None
+    pred_index
 ):
     # Model khusus untuk Grad-CAM
     grad_model = tf.keras.models.Model(
@@ -21,16 +21,15 @@ def make_gradcam_heatmap(
             model.output
         ]
     )
-
+    
     # Hitung gradient
     with tf.GradientTape() as tape:
         conv_outputs, predictions = grad_model(img_array)
 
-        # Binary sigmoid output
-        if pred_index is None:
-            class_channel = predictions[:, 0]
+        if pred_index == 0:
+            class_channel = 1.0 - predictions[:, 0]
         else:
-            class_channel = predictions[:, pred_index]
+            class_channel = predictions[:, 0]
 
     # Gradient terhadap feature map
     grads = tape.gradient(

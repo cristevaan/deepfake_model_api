@@ -160,7 +160,8 @@ async def predict_image(
         heatmap = make_gradcam_heatmap(
             img_array=img_array,
             model=model,
-            last_conv_layer_name="activation_8"
+            last_conv_layer_name="activation_8",
+            pred_index=pred_index
         )
 
         # Overlay heatmap ke gambar asli
