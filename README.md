@@ -1,6 +1,6 @@
 # Deepfake model API
 
-API ini merupakan **model AI / ML** yang mampu mendeteksi anomali deepfake berupa **klasifikasi** pada data berupa **gambar atau foto**. Output dari model ini terdiri dari prediksi kelas, nilai confidence, probabilitas tiap kelas, dan penjelasan dari **_generative_ AI (Groq / OpenAI)**.
+API ini merupakan **model AI / ML** yang mampu mendeteksi anomali deepfake berupa **klasifikasi** pada data berupa **gambar atau foto**. Output dari model ini terdiri dari prediksi kelas, nilai confidence, probabilitas tiap kelas, dan fitur tambahan berupa penjelasan dari **_generative_ AI (Groq / OpenAI)**.
 
 ## Fitur
 
@@ -8,7 +8,7 @@ API ini merupakan **model AI / ML** yang mampu mendeteksi anomali deepfake berup
 - Prediksi Real / Fake
 - Confidence score
 - Probability tiap kelas
-- Penjelasan otomatis menggunakan Generative AI
+- Penjelasan tambahan menggunakan Generative AI
 - Dokumentasi API otomatis (Swagger UI)
 
 ## Tech Stack
@@ -34,8 +34,7 @@ deepfake_model_api/
 
 ## Prerequisites
 
-- Python 3.10+
-- pip (Python Package Manager)
+- [Python](https://www.python.org/downloads/) 3.10+
 - API Key dari [Groq](https://console.groq.com) untuk generative AI
 
 ## Setup Server Lokal
@@ -46,7 +45,6 @@ python3 -m venv venv        # Windows: py -m venv venv
 source venv/bin/activate    # Windows: venv\Scripts\activate
 
 # 2. Install dependencies
-# Masuk atau arahkan ke dalam direktori proyek
 pip install -r requirements.txt
 
 # 3. Setup environment variabel
